@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Register from './register/register.js'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 function App() {
     console.log('render app');
@@ -19,6 +21,9 @@ function App() {
                 >
                     Learn React
                 </a>
+                <MuiThemeProvider>
+                    <Register/>
+                </MuiThemeProvider>
             </header>
         </div>
     );

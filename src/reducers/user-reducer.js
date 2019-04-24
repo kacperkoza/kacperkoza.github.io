@@ -2,7 +2,7 @@ import { Register } from "../actions/user-actions";
 
 const initialState = {
     isFetching: false,
-    isAuth: true,
+    isAuth: false,
 };
 
 export default function userReducer(state = initialState, action) {
