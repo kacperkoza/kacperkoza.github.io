@@ -1,4 +1,4 @@
-import { Register } from "../actions/user-actions";
+import { Register, Login } from "../actions/user-actions";
 
 const initialState = {
     isFetching: false,
@@ -18,6 +18,22 @@ export default function userReducer(state = initialState, action) {
                 isFetching: false,
             };
         case Register.ERROR:
+            return {
+                ...state,
+                isFetching: false,
+            };
+        case Login.IN_PROGRESS:
+            return {
+                ...state,
+                isFetching: true,
+            };
+        case Login.SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                isAuth: true
+            };
+        case Login.ERROR:
             return {
                 ...state,
                 isFetching: false,
