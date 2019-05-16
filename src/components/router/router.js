@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Landing from '../landing/landing.js'
+import Dashboard from '../dashboard/dashboard.js'
 
 const mapStateToProps = ({ user }) => {
     return {
@@ -21,16 +22,16 @@ class Router extends Component {
     render() {
         const isCheckingAuth = !this.props.isAuth;
         const { isAuth } = this.props;
+        console.log("is auth = " + isAuth);
         return (
-            (
-                !isAuth ?
-                    <HashRouter>
-                        <Route path="/" component={Landing}/>
-                    </HashRouter>
+            <HashRouter>
+                {!isAuth
+                    ? <Route path="/" component={Landing}/>
                     : <div className="authRoutes">
-                        po zalogowaniu...
+                        <Route exact path="dashboard" component={Dashboard}/>
                     </div>
-            )
+                }
+            </HashRouter>
         );
     }
 }

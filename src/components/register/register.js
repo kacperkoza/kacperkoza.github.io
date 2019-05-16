@@ -32,19 +32,19 @@ class Register extends Component {
         const { name, surname, password, passwordRepeated} = this.state;
 
         if (name.length  <= 0) {
-            this.nameErrorMessage = 'Podaj imię';
+            this.nameErrorMessage = 'Your name';
             return false;
         }
         if (surname.length <= 0) {
-            this.surnameErrorMessage = 'Podaj nazwisko'
+            this.surnameErrorMessage = 'Your surname';
             return false;
         }
 
         if (password.length < 6) {
-            this.passwordErrorMessage = 'Wprowadzone hasło jest zbyt krótkie';
+            this.passwordErrorMessage = 'Your password must have at least 6 characters';
             return false;
         } else if (password !== passwordRepeated) {
-            this.repeatedPasswordErrorMessage = 'Hasła nie są takie same';
+            this.repeatedPasswordErrorMessage = 'The passwords are not the same';
             return false;
         }
         return true;
@@ -66,7 +66,7 @@ class Register extends Component {
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
                     <form onSubmit={e => this.submitForm(e)}>
                         <TextField
-                            hintText="Wpisz adres e-mail"
+                            hintText="Your e-mail address"
                             floatingLabelText="E-mail"
                             type="email"
                             fullWidth
@@ -74,8 +74,8 @@ class Register extends Component {
                             onChange={e => this.setState({ email: e.target.value })}
                         />
                         <TextField
-                            hintText="Podaj imię"
-                            floatingLabelText="Twoje imię"
+                            hintText="Your name"
+                            floatingLabelText="Your name"
                             type="text"
                             required
                             errorText={this.state.validate && this.nameErrorMessage}
@@ -83,8 +83,8 @@ class Register extends Component {
                             fullWidth
                         />
                         <TextField
-                            hintText="Podaj nazwisko"
-                            floatingLabelText="Twoje nazwisko"
+                            hintText="Your surname"
+                            floatingLabelText="Your surname"
                             type="text"
                             required
                             errorText={this.state.validate && this.surnameErrorMessage}
@@ -92,8 +92,8 @@ class Register extends Component {
                             fullWidth
                         />
                         <TextField
-                            hintText="Wpisz swoje hasło"
-                            floatingLabelText="Hasło"
+                            hintText="Your password"
+                            floatingLabelText="Your password"
                             type="password"
                             fullWidth
                             errorText={this.state.validate && this.passwordErrorMessage}
@@ -104,8 +104,8 @@ class Register extends Component {
                             required
                         />
                         <TextField
-                            hintText="Powtórz swoje hasło"
-                            floatingLabelText="Powtórz hasło"
+                            hintText="Repeat password"
+                            floatingLabelText="Repeat password"
                             type="password"
                             fullWidth
                             errorText={
@@ -119,7 +119,7 @@ class Register extends Component {
                             required
                         />
                         <RaisedButton
-                            label="Zarejestruj się"
+                            label="Register"
                             primary={true}
                             style={{ marginTop: '10px' }}
                             type="submit"

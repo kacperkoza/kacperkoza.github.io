@@ -9,9 +9,9 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            validate: false
+            email: 'kacper@gmail.com',
+            password: 'kacper',
+            validate: true
         };
         this.passwordErrorMessage = '';
     }
@@ -22,7 +22,7 @@ class Login extends React.Component {
         });
         this.passwordErrorMessage = '';
         if (this.state.password.length < 6) {
-            this.passwordErrorMessage = 'Hasło jest zbyt krótkie';
+            this.passwordErrorMessage = 'Password must have at least 6 characters';
             return false;
         }
         return true;
@@ -49,18 +49,20 @@ class Login extends React.Component {
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
                     <form onSubmit={e => this.submitForm(e)}>
                         <TextField
-                            hintText="Wpisz adres e-mail"
+                            hintText="Your e-mail address"
                             floatingLabelText="E-mail"
                             type="email"
                             fullWidth
                             required
+                            value={"kacper@gmail.com"}
                             onChange={e => this.setState({ email: e.target.value })}
                         />
                         <TextField
-                            hintText="Wpisz swoje hasło"
-                            floatingLabelText="Hasło"
+                            hintText="Enter your password"
+                            floatingLabelText="Password"
                             type="password"
                             fullWidth
+                            value={"kacper"}
                             errorText={
                                 this.state.validate && this.passwordErrorMessage
                             }
@@ -71,7 +73,7 @@ class Login extends React.Component {
                             required
                         />
                         <RaisedButton
-                            label="Zaloguj się"
+                            label="Login"
                             primary={true}
                             style={{ marginTop: '10px' }}
                             type="submit"

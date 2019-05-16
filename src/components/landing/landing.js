@@ -53,8 +53,7 @@ class Landing extends React.Component {
             <Card className="register" style={{ maxWidth: '500px' }}>
                 <SwipeableViews
                     index={this.state.tabsIndex}
-                    onChangeIndex={this.handleTabChange}
-                >
+                    onChangeIndex={this.handleTabChange}>
                     <Login onLoginSubmit={onLoginSubmit} isFetching={isFetching}/>
                     <Register onRegisterSubmit={onRegisterSubmit} isFetching={isFetching}/>
                 </SwipeableViews>
@@ -62,8 +61,7 @@ class Landing extends React.Component {
                 <Tabs
                     onChange={this.handleTabChange}
                     value={this.state.tabsIndex}
-                    inkBarStyle={{ backgroundColor: cyan500 }}
-                >
+                    inkBarStyle={{ backgroundColor: cyan500 }}>
                     <Tab
                         style={tabStyle(0)}
                         label="Logowanie"
