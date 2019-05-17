@@ -1,5 +1,11 @@
 import { requestApi } from "./api";
 
+export const findAll = () =>
+    requestApi('/users', {
+        method: 'GET',
+        credentials: 'include'
+    });
+
 export const register = (body) =>
     requestApi('/users', {
         method: 'POST',
@@ -36,5 +42,6 @@ export const userApi = {
     login,
     logout,
     update,
-    delete: _delete
+    delete: _delete,
+    findAll
 };

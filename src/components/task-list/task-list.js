@@ -1,16 +1,164 @@
 import React from 'react';
 import { Card } from 'material-ui/Card';
+import { findAll } from "../../api/user-api";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
-export default class TaskList extends React.Component {
+const Sorts = [
+    {
+        text: 'Newest first',
+        value: 'CREATED_DESC'
+    },
+    {
+        text: 'Oldest first',
+        value: 'CREATED_ASC'
+    },
+    {
+        text: 'Last modified',
+        value: 'LAST_MODIFIED_DESC'
+    },
+    {
+        text: 'Oldest modified',
+        value: 'LAST_MODIFIED_ASC'
+    }
+];
+
+const AssignedUserFilter = [
+    {
+        text: 'All users',
+        value: 'ALL'
+    },
+    {
+        text: 'Unassigned',
+        value: 'UNASSIGNED'
+    }
+];
+
+const StatusFilter = [
+    {
+        text: 'All',
+        value: 'ALL'
+    },
+    {
+        text: 'To do',
+        value: 'TODO'
+    },
+    {
+        text: 'In progress',
+        value: 'IN_PROGRESS'
+    },
+    {
+        text: 'Done',
+        value: 'DONE'
+    },
+];
+
+class TaskList extends React.Component {
+
     constructor(props) {
         super(props);
+        this.state = {
+            sort: Sorts[0].value,
+            filterSortDialogOpen: false,
+            taskStatusFilter: 'ALL',
+            assignedUserIdFilter: AssignedUserFilter[0].value,
+            taskCreatorFilter: AssignedUserFilter[0].value,
+            users: []
+        }
     }
 
+    componentDidMount() {
+        findAll()
+            .then(data => data.json())
+            .then(body => {
+                    console.log('got users = ' + JSON.stringify(body));
+                    this.setState({
+                        users: body.users
+                    });
+                }
+            )
+    }
+
+    changeSort = value => {
+        console.log(`New filter = ${value}`);
+        this.setState({ sort: value });
+    };
+
+    assignedUserIdFilter = value => {
+        console.log(`New assigned user = ${value}`);
+        this.setState({ assignedUserIdFilter: value });
+    };
+
+    taskStatusFilter = value => {
+        console.log(`New task status filter = ${value}`);
+        this.setState({ taskStatusFilter: value });
+    };
+
+    taskCreatorFilter= value => {
+        console.log(`New task status filter = ${value}`);
+        this.setState({ taskCreatorFilter: value });
+    };
+
     render() {
+        console.log(this.state);
+        const { sort, assignedUserIdFilter, taskStatusFilter, taskCreatorFilter, users } = this.state;
+        const usersFilter = users.map(user => {
+            return {
+                text: `${user.name} ${user.surname}`, value: user.email, key: user.email
+            }
+        });
+        const assignedFilter = [...AssignedUserFilter, ...usersFilter];
+        const taskCreatorFilters = [AssignedUserFilter[0], ...usersFilter];
         return (
             <Card className="task-list" style={{ maxWidth: '500px' }}>
-                Tu będzie lista
+                <FormControl style={{ width: '45%', margin: '8px' }}>
+                    <InputLabel htmlFor="age-simple">Sorting</InputLabel>
+                    <Select
+                        value={sort}
+                        onChange={event => this.changeSort(event.target.value)}>
+                        {Sorts.map(sort =>
+                            <MenuItem key={sort.value} value={sort.value}>{sort.text}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+                <FormControl style={{ width: '45%', margin: '8px' }}>
+                    <InputLabel>Task status</InputLabel>
+                    <Select
+                        value={taskStatusFilter}
+                        onChange={event => this.taskStatusFilter(event.target.value)}>
+                        {StatusFilter.map(userFilter =>
+                            <MenuItem key={userFilter.value}
+                                      value={userFilter.value}>{userFilter.text}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+                <FormControl style={{ width: '45%', margin: '8px' }}>
+                    <InputLabel>Assigned user</InputLabel>
+                    <Select
+                        value={assignedUserIdFilter}
+                        onChange={event => this.assignedUserIdFilter(event.target.value)}>
+                        {assignedFilter.map(userFilter =>
+                            <MenuItem key={userFilter.value}
+                                      value={userFilter.value}>{userFilter.text}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+                <FormControl style={{ width: '45%', margin: '8px' }}>
+                    <InputLabel>Task creator</InputLabel>
+                    <Select
+                        value={taskCreatorFilter}
+                        onChange={event => this.taskCreatorFilter(event.target.value)}>
+                        {taskCreatorFilters.map(taskCreator =>
+                            <MenuItem key={taskCreator.value}
+                                      value={taskCreator.value}>{taskCreator.text}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
             </Card>
         );
     }
 }
+
+export default TaskList;

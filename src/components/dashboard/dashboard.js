@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card } from 'material-ui/Card';
-import SwipeableViews from "../landing/landing";
+import SwipeableViews from 'react-swipeable-views';
 import { Tab, Tabs } from "material-ui/Tabs";
 import { cyan500 } from "material-ui/styles/colors";
 import TaskList from "../task-list/task-list";
 import Board from "../board/Board";
+import { connect } from "react-redux";
 
-export default class Dashboard extends React.Component {
+const mapStateToProps = ({ user }) => {
+    return {
+        isFetching: user.isFetching
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return { };
+};
+
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,6 +32,12 @@ export default class Dashboard extends React.Component {
             background: '#eee',
             color: this.shouldApplicateCyanColor(value)
         };
+    };
+
+    handleTabChange = value => {
+        this.setState({
+            tabsIndex: value
+        });
     };
 
     render() {
@@ -53,3 +70,5 @@ export default class Dashboard extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

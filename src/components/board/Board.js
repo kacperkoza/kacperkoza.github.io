@@ -1,14 +1,21 @@
 import React from 'react';
 import { Card } from 'material-ui/Card';
+import { findAll } from "../../api/user-api";
 
-export default class Board extends React.Component {
+class Board extends React.Component {
+
+
 
     render() {
         return (
             <Card className="board" style={{ maxWidth: '500px' }}>
-                Tu będzie tablica
+                <div>
+                    Tu bedzie tablica
+                </div>
             </Card>
         );
     }
 }
+
+export default Board;
 
