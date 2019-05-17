@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import { Tab, Tabs } from "material-ui/Tabs";
@@ -57,12 +57,12 @@ class Dashboard extends React.Component {
                     inkBarStyle={{ backgroundColor: cyan500 }}>
                     <Tab
                         style={this.tabStyle(0)}
-                        label="Lista"
+                        label="List"
                         value={0}
                     />
                     <Tab
                         style={this.tabStyle(1)}
-                        label="Tablica"
+                        label="Board"
                         value={1}
                     />
                 </Tabs>
