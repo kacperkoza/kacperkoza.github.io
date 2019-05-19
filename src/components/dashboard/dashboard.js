@@ -11,7 +11,7 @@ import {
     changeSort,
     changeStatusFilter,
     findAllTasks
-} from "../../actions/task-actions";
+} from "../../actions/task-list-actions";
 import { connect } from 'react-redux';
 import { getAllUsers } from "../../actions/user-actions";
 import { List, TableChart } from "@material-ui/icons";

@@ -32,8 +32,8 @@ class Task extends React.Component {
         console.log('task props ' + JSON.stringify(this.props.task));
         const { task } = this.props;
         return (
-            <div style={{width: '100%', display: 'flex'}}>
-                <div style={{width: '75%'}}>
+            <div style={{ width: '100%', display: 'flex'}}>
+                <div style={{width: '70%'}}>
                     <Typography
                         style={{ textAlign: 'left', 'font-weight': 'bold' }}
                         variant="h7"

@@ -79,7 +79,7 @@ class TaskList extends React.Component {
                 </Card>
                 <Card className="task-list" style={{ maxWidth: '500px' }}>
                     <List>
-                        {tasks.map(task => <ListItem key={task.taskId}><Task task={task}/></ListItem>)}
+                        {tasks.map(task => <ListItem style={{padding: 0}} key={task.taskId}><Task task={task}/></ListItem>)}
                     </List>
                 </Card>
             </div>

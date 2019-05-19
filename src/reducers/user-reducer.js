@@ -50,6 +50,12 @@ export default function userReducer(state = initialState, action) {
                 list: action.users,
                 isFetching: false
             };
+        case UserList.ERROR:
+            return {
+                ...state,
+                list: [],
+                isFetching: false
+            };
         default:
             return state;
     }

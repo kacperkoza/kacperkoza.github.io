@@ -12,3 +12,11 @@ export const getList = (sort, assigneUserId, creatorUserId, status) => {
     });
 };
 
+export const createTask = (body) => {
+    return requestApi('/tasks', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify(body)
+    });
+};
+

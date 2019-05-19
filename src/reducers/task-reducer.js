@@ -4,7 +4,7 @@ import {
     TaskListCreatorUserId,
     TaskListSort,
     TaskListStatus
-} from "../actions/task-actions";
+} from "../actions/task-list-actions";
 import { AssignedUserFilter, Sorts, StatusFilter } from "../components/task-list/task-list";
 
 const initialState = {

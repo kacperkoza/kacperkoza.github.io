@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Dashboard from '../dashboard/dashboard.js'
+import NewTask from "../task/new-task";
 
 const mapStateToProps = ({ user }) => {
     return {
         isAuth: true,
-        tasks: {}
     };
 };
 
