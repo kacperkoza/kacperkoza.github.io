@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'material-ui/Card';
-import { findAll } from "../../api/user-api";
+import { fetchAllUsers } from "../../api/user-api";
 
 class Board extends React.Component {
 

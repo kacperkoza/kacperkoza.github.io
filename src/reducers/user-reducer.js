@@ -1,8 +1,9 @@
-import { Register, Login } from "../actions/user-actions";
+import { Login, Register, UserList } from "../actions/user-actions";
 
 const initialState = {
     isFetching: false,
     isAuth: false,
+    list: []
 };
 
 export default function userReducer(state = initialState, action) {
@@ -37,6 +38,17 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
+            };
+        case UserList.IN_PROGRESS:
+            return {
+                ...state,
+                isFetching: true
+            };
+        case UserList.SUCCESS:
+            return {
+                ...state,
+                list: action.users,
+                isFetching: false
             };
         default:
             return state;

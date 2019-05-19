@@ -1,15 +1,21 @@
-import { register, login } from "../api/user-api";
+import { fetchAllUsers, login, register } from "../api/user-api";
 
 export const Register = {
-    IN_PROGRESS: 'REGISTER_IN_PROGRESS',
     SUCCESS: 'REGISTER_SUCCESS',
+    IN_PROGRESS: 'REGISTER_IN_PROGRESS',
     ERROR: 'REGISTER_ERROR',
 };
 
 export const Login = {
-    IN_PROGRESS: 'LOGIN_IN_PROGRESS',
     SUCCESS: 'LOGIN_SUCCES',
+    IN_PROGRESS: 'LOGIN_IN_PROGRESS',
     ERROR: 'LOGIN_ERROR'
+};
+
+export const UserList = {
+    SUCCESS: 'USER_LIST_SUCCESS',
+    IN_PROGRESS: 'USER_LIST_IN_PROGRESS',
+    ERROR: 'USER_LIST_ERROR',
 };
 
 export const submitRegister = (data) => {
@@ -62,4 +68,30 @@ export const submitLogin = (data) => {
             })
             .catch(error => dispatch({ type: Login.ERROR, error }));
     };
+};
+
+export const getAllUsers = () => {
+    return (dispatch, getState) => {
+        dispatch({ type: UserList.IN_PROGRESS });
+        return fetchAllUsers()
+            .then(response => {
+                switch (response.status) {
+                    case 200:
+                        console.log('success fetch all users');
+                        response.json()
+                            .then(body => {
+                                dispatch({
+                                    type: UserList.SUCCESS,
+                                    users: body.users
+                                });
+                            });
+
+                        break;
+                    default:
+                        console.log("unknown fetch all users error: " + JSON.stringify(response));
+                }
+            })
+            .catch(error => dispatch({ type: UserList.ERROR, error }));
+
+    }
 };

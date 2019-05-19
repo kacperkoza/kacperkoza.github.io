@@ -40,7 +40,6 @@ class Landing extends React.Component {
     };
 
     render() {
-        console.log('render lading ');
         const { onRegisterSubmit, onLoginSubmit, isFetching } = this.props;
         const shouldApplicateCyanColor = value =>
             this.state.tabsIndex === value ? cyan500 : '#212121';

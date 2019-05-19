@@ -1,6 +1,6 @@
 import { requestApi } from "./api";
 
-export const findAll = () =>
+export const fetchAllUsers = () =>
     requestApi('/users', {
         method: 'GET',
         credentials: 'include'
@@ -43,5 +43,5 @@ export const userApi = {
     logout,
     update,
     delete: _delete,
-    findAll
+    findAll: fetchAllUsers
 };

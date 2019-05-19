@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './user-reducer.js'
+import taskReducer from './task-reducer.js'
 
 const appReducer = combineReducers({
-    user: userReducer
+    user: userReducer,
+    tasks: taskReducer
 });
 
 export default (state, action) => {
